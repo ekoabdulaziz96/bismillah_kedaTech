@@ -4,7 +4,9 @@ informasi :
  1. file ERD            : ERD.jpg
  2. file models         : app_store/models.py
  3. file controllers    : app_store/views_*.py
- 4. file testing        : app_store/tests
+ 3. file api            : app_store/api    --> [views and serializer]
+ 4. file testing        : app_store/tests          
+                          app_store/tests/api 
 
 Run Program : 
 1. pastikan python sudah terisntall dan buka cmd/powershell di tepat diluar folder bismillah_keda

@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from corsheaders.defaults import default_headers
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,12 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '&i1)=d-%6m6t4b8b^_!dq)@wbcrw%nghh8*4^861k9md5xh#f2'
-
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 #add new URL client if CORS problem appear
-ALLOWED_HOSTS = ['testserver','0.0.0.0', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['testserver','0.0.0.0', 'localhost', '127.0.0.1','bismillah-keda-tech.herokuapp.com']
 
 
 # Application definition
@@ -91,7 +94,8 @@ DATABASES = {
     }
 }
 
-
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -143,6 +147,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #----------------------------------------------------------Rest Framework
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
