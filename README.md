@@ -29,4 +29,6 @@ struktur folder:
 -bismillah_keda
 -venv
 
-deployment/production/Operation: https://bismillah-keda.herokuapp.com/ [DB:postgreSQL]
+NB:
+- deployment/production: https://bismillah-keda-tech.herokuapp.com/app-store/api/ [DB:postgreSQL]
+- github public : https://github.com/ekoabdulaziz96/bismillah_kedaTech
