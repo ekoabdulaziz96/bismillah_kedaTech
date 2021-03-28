@@ -1,0 +1,149 @@
+body {
+	zoom: 0.95;
+}
+
+.modal {
+	background-color: rgb(0, 0, 0);
+	/* zoom: 1 */
+}
+
+.mdi {
+	zoom: 1.2;
+}
+
+.sidebar {
+	zoom: 0.95;
+	background: #d8d7d7bf !important;
+}
+
+.content-wrapper,
+.footer {
+	width: 102.4%;
+}
+
+.content-wrapper {
+	min-height: 600px !important;
+	padding-top: 20px !important;
+	background-color: #e8e9ea52 !important;
+}
+.navbar .navbar-brand-wrapper {
+	background: #c5c5c5 !important;
+}
+.navbar .navbar-menu-wrapper {
+	background: #d8d7d7 !important;
+}
+.navbar {
+	box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+}
+.bootstrap-select .dropdown-toggle .filter-option {
+	box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+}
+
+.footer {
+	padding: 10px;
+	padding-right: 50px !important;
+	background-color: rgb(216, 215, 215) !important;
+	border-top: #e9ecef solid 1px;
+}
+
+table tbody tr td a,
+table tbody tr td button {
+	width: 50px;
+	text-align: center
+}
+
+
+.table td {
+	padding: 5px !important;
+	font-size: 16px !important;
+
+}
+
+.table th {
+	padding: 20px !important;
+}
+.table thead {
+	background: #d8d7d7;
+}
+
+.card {
+	margin-top: -5px;
+	padding-top: -5px
+}
+
+.card .card-body {
+    border-block-end-style: inherit !important;
+    border-block-start-style: inherit !important;
+    border-block-start-width: inherit !important;
+	border-block-end-width: inherit !important;
+	border-block-start-color: grey !important;
+	border-block-end-color: grey !important;
+}
+.card {
+	box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+	border-width: 0;
+	transition: all .2s;
+}
+/* table {
+	margin-bottom: 10px !important;
+} */
+
+.table {
+	zoom: 0.9;
+	/* font-size: 14px !important; */
+
+}
+
+.swal2-container {
+	zoom: 0.8 !important;
+}
+
+.activate {
+	color: #4d83ff !important;
+	/* font-weight: bold */
+	/* background-color: red !important; */
+}
+
+.use-dataset {
+	width: 140px;
+	height: 40px;
+}
+
+.use-dataset i {
+	padding: 5px;
+
+}
+
+
+.form-control:hover{
+	box-shadow: 0 0.3rem rgba(4, 9, 20, 0.05),
+	    0 0.3rem 0.5rem rgba(4, 9, 20, 0.05),
+	    0 0.3rem rgba(4, 9, 20, 0.05),
+	    0 0.3rem 0.5rem rgba(4, 9, 20, 0.05);
+}
+
+select.form-control,
+.dataTables_wrapper select{
+	color: black !important;
+}
+
+@media (max-width: 767px){
+   .filter-col-Type {
+   	text-align: center !important;
+   }
+
+   body {
+   	zoom: 0.8;
+   }
+}
+
+@media screen and (max-width: 991px){
+  .sidebar-offcanvas.active {
+    right: 0;
+    background: #c5c5c5 !important;
+   }
+	body {
+	zoom: 0.9;
+	}
+
+}

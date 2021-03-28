@@ -1,0 +1,52 @@
+{% load static %}
+    
+     <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+            <li class="nav-item" id="home">
+              {% comment %} <a class="nav-link" href="/"> {% endcomment %}
+              <a class="nav-link" href="{% url 'index' %}">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Home</span>
+              </a>
+            </li>
+            <li class="nav-item" id="supplier">
+              <a class="nav-link" href="{% url 'as:supplier-index' %}">
+                <i class="mdi mdi-account-network  menu-icon"></i>
+                <span class="menu-title"> Kelola Supplier</span>
+              </a>
+            </li>
+            <li class="nav-item" id="material">
+              <a class="nav-link" href="{% url 'as:material-index' %}">
+                <i class="mdi mdi-clipboard-text  menu-icon"></i>
+                <span class="menu-title"> Kelola Material</span>
+              </a>
+            </li>
+            <li class="nav-item" id="material">
+              <a class="nav-link" href="{% url 'as:api-root' %}">
+                <i class="mdi mdi-fire  menu-icon"></i>
+                <span class="menu-title"> API App Store</span>
+              </a>
+            </li>
+
+{% comment %} ------ {% endcomment %}
+        {% comment %} {% if user.is_authenticated %}
+          {% if user.is_superuser == 1 %}
+        <li class="nav-item  alert-warning">
+            <a class="nav-link" href="#">
+              <span class="menu-title"></span>
+            </a>
+          </li> 
+                <li class="nav-item" id="access-control">
+                  <a class="nav-link" href="{% url 'index' %}">
+                    <i class="mdi mdi-account-network menu-icon"></i>
+                    <span class="menu-title">Access Control</span>
+                  </a>
+                </li>
+          {% endif %}
+        {% endif %} {% endcomment %}
+  
+{% comment %} ------ {% endcomment %}
+
+
+        </ul>
+      </nav>

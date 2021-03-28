@@ -1,0 +1,196 @@
+
+{% extends 'templates.html' %}
+{% load static %}
+
+{% comment %} CSS {% endcomment %}
+{% block app_style %}
+    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %} "> {% endcomment %}
+{% endblock app_style %}
+
+{% comment %} CONTENT {% endcomment %}
+{% block content_header %}
+{% endblock content_header %}
+
+{% block content %}
+
+    <div class=" mr-3">
+    {% comment %} header {% endcomment %}
+        <div class="row">
+          <div class="col-md-12 grid-margin">
+            <div class="d-flex justify-content-between flex-wrap">
+              <div class="d-flex justify-content-between align-items-end flex-wrap">
+                  <div class="ml-4 ml-xl-5 mt-3">
+                    <h2>{{page_judul}}</h2>
+                    <p class="mb-md-0">{{page_deskripsi}} </p>
+                  </div>
+              </div>
+              <div class="d-flex align-items-end flex-wrap">
+
+                <div class="mr-4 mr-xl-4 ml-4 pt-3">
+
+                    <a class="btn btn-outline-success btn-icon-text" href="{% url 'as:material-create' %}">
+                      <i class='mdi mdi-hospital btn-icon-prepend'></i> Tambah {{page_role}}
+                    </a>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      <br>
+{% comment %} content {% endcomment %}
+              <div class="card">
+                <div class="card-header alert-warning" >
+                  {% comment %} <h6> <u> Perhatian </u>: field Nama bersifat "case sensitif" dan unik </h6> {% endcomment %}
+                </div>
+                <div class="card-body">
+                  <div class="text-right filter-col-Type" id="filterCol_i" data-column="3" >
+                    <label><p> filter TIPE : </p></label>
+                    <select name="JobID" class="column_filter" id="filterCol_type">
+                      <option>All</option>
+                        {% for typeChoice in typeChoices %}
+                          <option value="{{typeChoice.0}}">{{typeChoice.1}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                  <div class="table-responsive">
+                    <table id="datatable" class="table table-hover">
+                      <thead>
+                        <tr>
+                            <th width="5%">No</th>
+                            <th >Kode</th>
+                            <th >Supplier</th>
+                            <th >Nama</th>
+                            <th >Tipe</th>
+                            <th >Harga Beli</th>
+                            <th width="13%">Kelola</th>
+                        </tr>
+                      </thead> 
+                      <tbody>
+                            
+                            {% for material in materials %}
+                              <tr>
+                                <td class='text-center'>{{forloop.counter}} </td>
+                                <td> {{material.code}} </td>   
+                                <td> {{material.supplier.name}} </td>   
+                                <td> {{material.name}} </td>   
+                                <td> {{material.type}} </td>   
+                                <td> {{material.buyPrice}} </td>   
+
+                                <td>
+                                    <a class="btn btn-outline-primary btn-fw" href="{% url 'as:material-detail' material.id %}" title='detail {{material}} '><i class="mdi mdi-book-open-page-variant"></i></a>
+                                    <a class="btn btn-outline-warning btn-fw" href="{% url 'as:material-update' material.id %}" title='edit {{material}}'><i class="mdi mdi-eyedropper"></i></a>
+                                    <a id="delete-data" class="btn btn-outline-danger btn-fw" href="{% url 'as:material-delete' material.id %}" title='hapus {{material}}'><i class="mdi mdi-delete-forever"></i></a>
+                                </td>
+                              </tr>        
+                            {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+    </div>
+{% endblock content %}
+
+
+{% comment %} JAVASCRIPTS {% endcomment %}
+{% block app_scripts %}
+    {% comment %} <script src="{% static 'buku/js/script.js' %}"></script> {% endcomment %}
+    <script>
+    (function($) {
+        'use strict';
+        $(function() {
+            //active sidebar
+            $("#material").addClass('active');
+            //data table
+            $('#datatable').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 15, -1],
+                    [5, 10, 15, "All"]
+                ],
+                "iDisplayLength": 10,
+                "language": {
+                    search: "search : "
+                },
+                searching: true, paging: true, info: true
+            });
+            //filter
+            $('#filterCol_type').on('change', function () {
+                //filterColumn( $(this).parents('div').attr('data-column') );
+                let valType = $(this).val()
+                console.log(valType)
+                if (valType === 'All'){
+                  console.log('cek')
+                  $('#datatable').DataTable().columns('').search('').draw();
+                }else{
+                  $('#datatable').DataTable().column(4).search(valType).draw()
+                }
+            } );
+            //flash message
+            {% if messages %}
+              {% for message in messages %}
+                swal({
+                  type: 'success',
+                  title: 'Berhasil!',
+                  text: '{{message}}',
+                  timer: 2500
+                });
+              {% endfor %}
+            {% endif %}
+
+            // action add update
+
+              // delete
+              $('body').on('click', '#delete-data', function (event) {
+                  event.preventDefault();
+                  var me = $(this),
+                      url = me.attr('href'),
+                      title = me.attr('title'),
+                      csrf_token = $("[name=csrfmiddlewaretoken]").val();
+                  swal({
+                      title: 'Apakah Anda Yakin ?',
+                      text: 'ingin meng' + '"'+ title +'"',
+                      type: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Hapus',
+                      cancelButtonText: 'Batal'
+                  }).then((result) => {
+                  if (result.value) {
+                      $.ajax({
+                          url: url,
+                          type: "POST",
+                          data: {
+                              'csrfmiddlewaretoken': csrf_token
+                          },
+                          success: function (response) {
+                              setTimeout(function () { location.reload();}, 2600);
+                              swal({
+                                  type: 'success',
+                                  title: 'Success!',
+                                  text: 'Data ' + '"'+ title +'"'+ ' berhasil dihapus!',
+                                  timer: 2500
+
+                              });
+                          },
+                          error: function (xhr) {
+                              swal({
+                                  type: 'error',
+                                  title: 'Oops...',
+                                  text: 'Something went wrong!'
+                              });
+                          }
+                      });
+                  }
+                  });
+              });
+
+
+
+        });
+    })(jQuery);
+    </script>
+{% endblock app_scripts %}

@@ -1,0 +1,103 @@
+{% extends 'templates.html' %}
+{% load static %}
+
+{% comment %} CSS {% endcomment %}
+{% block app_style %}
+    {% comment %} <link rel="stylesheet" href="{% static 'backend_phm/css/style.css' %} "> {% endcomment %}
+    <style>
+    .table-responsive {
+        display: table;
+    }
+    </style>
+{% endblock app_style %}
+
+{% comment %} CONTENT {% endcomment %}
+{% block content_header %}
+{% endblock content_header %}
+
+{% block content %}
+    <div class="container  ">
+    {% comment %} header {% endcomment %}
+        <div class="row">
+          <div class="col-md-12 grid-margin">
+          
+            <div class="d-flex justify-content-between flex-wrap">
+              <div class="d-flex align-items-end flex-wrap">
+                <div class="mr-3 mr-xl-5 ml-4">
+                    <a class="btn btn-secondary" href={% url 'as:material-index'  %}>
+                    <i class='mdi mdi-keyboard-backspace'></i> Semua {{page_role}}
+                  </a>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-end flex-wrap">
+                  <div class="mr-3 mr-xl-5 pt-3">
+                    <h2>{{page_judul}}</h2>
+                    <p class="mb-md-0">{{page_deskripsi}} </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <br>
+
+        <div class="card">
+            <div class="card-header">
+                {% comment %} <p><u> <a href="{{model.file_model.url}}" target='__blank'>Unduh model</a></u> </p> {% endcomment %}
+            </div>
+            <div class="card-body">
+            <div class="table-responsive">
+             <table border='0' style='font-size : 14px' class='table table-striped table-hover'>
+                   <thead>
+                    <tr>
+                        <th width='18%'>Atribut</th>
+                        <th width='3%' class='text-center'>|</th>
+                        <th>Nilai</th>
+                    </tr>                
+                    </thead>
+                    <tr>
+                        <td>Kode</td>
+                        <td width='5%' class='text-center'> : </td>
+                        <td>{{material.code}}  </td>
+                    </tr>
+                    <tr>
+                        <td>Supplier</td>
+                        <td width='5%' class='text-center'> : </td>
+                        <td>{{material.supplier.name}}  </td>
+                    </tr>
+                    <tr>
+                        <td>Nama</td>
+                        <td width='5%' class='text-center'> : </td>
+                        <td>{{material.name}}  </td>
+                    </tr>
+                    <tr>
+                        <td>Tipe</td>
+                        <td width='5%' class='text-center'> : </td>
+                        <td>{{material.type}}  </td>
+                    </tr>
+                    <tr>
+                        <td>Harga Beli</td>
+                        <td width='5%' class='text-center'> : </td>
+                        <td>{{material.buyPrice}}  </td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock content %}
+
+{% comment %} JAVASCRIPTS {% endcomment %}
+{% block app_scripts %}
+    {% comment %} <script src="{% static 'backend_phm/js/script.js' %}"></script> {% endcomment %}
+    <script>
+        (function($) {
+        'use strict';
+            $(function() {
+                $( "#material" ).addClass('active');
+
+            });
+        })(jQuery);
+    </script>
+{% endblock app_scripts %}

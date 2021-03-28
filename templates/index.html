@@ -1,0 +1,75 @@
+
+{% extends 'templates.html' %}
+{% load static %}
+
+{% comment %} CSS {% endcomment %}
+{% block app_style %}
+    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %} "> {% endcomment %}
+{% endblock app_style %}
+
+{% comment %} CONTENT {% endcomment %}
+{% block content_header %}
+{% endblock content_header %}
+
+{% block content %}
+
+    <div class="mt-5 container">
+    {% comment %} header {% endcomment %}
+        <div class="row">
+          <div class="col-md-12 grid-margin text-center">
+             <h3>SELAMAT DATANG</h3>
+             <h5>Selamat menggunakan App Store</h5>
+          </div>
+        </div>
+      <br>
+{% comment %} content {% endcomment %}
+              <div class="card">
+                <div class="card-header alert-warning" >
+                  <h6> <u> Deskripsi aplikasi</u>: </h6>
+                  <p>Aplikasi ini bisa membantu pengelolaan toko anda </p>
+                   
+                </div>
+                <div class="card-body">
+                  <h6> <u> Detail aplikasi</u>: </h6>
+                  <ol>
+                    <li>Memfasilitasi pengelolaan supplier </li>
+                    <li>Memfasilitasi pengelolaan material yang akan dijual </li>
+                  </ol>
+
+                  <h6> <u>Hubungkan dengan aplikasi lain</u>: </h6>
+                  <a class="btn btn-outline-danger btn-fw " href="{% url 'as:api-root' %}" style='text-size=16px'>
+                    <i class="mdi mdi-fire  menu-icon"></i>
+                    <span class="menu-title"> API App Store </span>
+                  </a>
+
+                </div>
+              </div>
+
+    </div>
+{% endblock content %}
+
+
+{% comment %} JAVASCRIPTS {% endcomment %}
+{% block app_scripts %}
+    {% comment %} <script src="{% static 'buku/js/script.js' %}"></script> {% endcomment %}
+    <script>
+    (function($) {
+        'use strict';
+        $(function() {
+           $("#home").addClass('active');
+            
+          {% if messages %}
+            {% for message in messages %}
+              swal({
+                type: 'success',
+                title: 'Berhasil!',
+                text: '{{message}}',
+                timer: 2500
+              });
+            {% endfor %}
+          {% endif %}
+
+        });
+    })(jQuery);
+    </script>
+{% endblock app_scripts %}
